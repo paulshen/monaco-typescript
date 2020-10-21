@@ -335,6 +335,7 @@ declare namespace monaco.languages.typescript {
 		 * @returns `Promise<typescript.NavigationBarItem[]>`
 		 */
 		getNavigationBarItems(fileName: string): Promise<any[]>;
+		getNavigationTree(fileName: string): Promise<any>;
 		/**
 		 * Get changes which should be applied to format the given file.
 		 * @param options `typescript.FormatCodeOptions`

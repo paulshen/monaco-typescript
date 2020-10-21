@@ -252,6 +252,10 @@ export class TypeScriptWorker implements ts.LanguageServiceHost, ITypeScriptWork
 		return this._languageService.getNavigationBarItems(fileName);
 	}
 
+	async getNavigationTree(fileName: string): Promise<ts.NavigationTree> {
+		return this._languageService.getNavigationTree(fileName);
+	}
+
 	async getFormattingEditsForDocument(
 		fileName: string,
 		options: ts.FormatCodeOptions
