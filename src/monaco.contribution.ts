@@ -376,6 +376,7 @@ export interface TypeScriptWorker {
 	 */
 	getNavigationBarItems(fileName: string): Promise<any[]>;
 	getNavigationTree(fileName: string): Promise<any>;
+	getNavigateToItems(searchValue: string, maxResultCount?: number): Promise<any[]>;
 
 	/**
 	 * Get changes which should be applied to format the given file.

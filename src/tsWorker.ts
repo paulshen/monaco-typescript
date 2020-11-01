@@ -256,6 +256,13 @@ export class TypeScriptWorker implements ts.LanguageServiceHost, ITypeScriptWork
 		return this._languageService.getNavigationTree(fileName);
 	}
 
+	async getNavigateToItems(
+		searchValue: string,
+		maxResultCount?: number
+	): Promise<ts.NavigateToItem[]> {
+		return this._languageService.getNavigateToItems(searchValue, maxResultCount, undefined, true);
+	}
+
 	async getFormattingEditsForDocument(
 		fileName: string,
 		options: ts.FormatCodeOptions
