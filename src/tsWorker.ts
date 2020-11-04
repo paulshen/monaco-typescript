@@ -4,14 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as ts from './lib/typescriptServices';
+import { worker } from './fillers/monaco-editor-core';
 import { libFileMap } from './lib/lib';
+import * as ts from './lib/typescriptServices';
 import {
 	Diagnostic,
 	IExtraLibs,
 	TypeScriptWorker as ITypeScriptWorker
 } from './monaco.contribution';
-import { worker } from './fillers/monaco-editor-core';
 
 export class TypeScriptWorker implements ts.LanguageServiceHost, ITypeScriptWorker {
 	// --- model sync -----------------------
@@ -261,6 +261,27 @@ export class TypeScriptWorker implements ts.LanguageServiceHost, ITypeScriptWork
 		maxResultCount?: number
 	): Promise<ts.NavigateToItem[]> {
 		return this._languageService.getNavigateToItems(searchValue, maxResultCount, undefined, true);
+	}
+
+	async prepareCallHierarchy(
+		fileName: string,
+		position: number
+	): Promise<ts.CallHierarchyItem | ts.CallHierarchyItem[] | undefined> {
+		return this._languageService.prepareCallHierarchy(fileName, position);
+	}
+
+	async provideCallHierarchyIncomingCalls(
+		fileName: string,
+		position: number
+	): Promise<ts.CallHierarchyIncomingCall[]> {
+		return this._languageService.provideCallHierarchyIncomingCalls(fileName, position);
+	}
+
+	async provideCallHierarchyOutgoingCalls(
+		fileName: string,
+		position: number
+	): Promise<ts.CallHierarchyOutgoingCall[]> {
+		return this._languageService.provideCallHierarchyOutgoingCalls(fileName, position);
 	}
 
 	async getFormattingEditsForDocument(
